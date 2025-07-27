@@ -57,7 +57,7 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" onClick={() => navigate("/cart")}>
                   <ShoppingCart className="h-5 w-5" />
                 </Button>
                 <Button 
@@ -93,7 +93,7 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" onClick={() => navigate("/cart")}>
                   <ShoppingCart className="h-5 w-5" />
                 </Button>
                 <Button 
@@ -144,7 +144,7 @@ const Header = () => {
             <div className="flex items-center space-x-4 pt-4 border-t">
               {user ? (
                 <>
-                  <Button variant="ghost" size="icon">
+                  <Button variant="ghost" size="icon" onClick={() => navigate("/cart")}>
                     <ShoppingCart className="h-5 w-5" />
                   </Button>
                   <Button 
@@ -170,10 +170,10 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <Button variant="ghost" size="icon">
+                  <Button variant="ghost" size="icon" onClick={() => navigate("/cart")}>
                     <ShoppingCart className="h-5 w-5" />
                   </Button>
-                  <Button variant="ghost" size="icon">
+                  <Button variant="ghost" size="icon" onClick={() => navigate("/profile")}>
                     <User className="h-5 w-5" />
                   </Button>
                   <Button 

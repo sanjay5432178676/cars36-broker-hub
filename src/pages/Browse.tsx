@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -84,11 +85,20 @@ const allCars = [
 ];
 
 const Browse = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("newest");
   const [filterBrand, setFilterBrand] = useState("all");
   
   const brands = ["BMW", "Audi", "Mercedes", "Toyota", "Honda", "Volkswagen"];
+
+  useEffect(() => {
+    const search = searchParams.get('search');
+    if (search) {
+      setSearchTerm(search);
+    }
+  }, [searchParams]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -216,9 +226,9 @@ const Browse = () => {
                   </div>
 
                   <div className="flex gap-2">
-                    <Button variant="automotive" className="flex-1">
-                      View Details
-                    </Button>
+                <Button variant="automotive" className="flex-1" onClick={() => navigate(`/car/${car.id}`)}>
+                  View Details
+                </Button>
                     <Button variant="outline" size="icon">
                       <Heart className="h-4 w-4" />
                     </Button>
@@ -230,7 +240,7 @@ const Browse = () => {
 
           {/* Load More */}
           <div className="text-center mt-12">
-            <Button variant="outline" size="lg" className="px-8">
+            <Button variant="outline" size="lg" className="px-8" onClick={() => console.log('Loading more cars...')}>
               Load More Cars
             </Button>
           </div>

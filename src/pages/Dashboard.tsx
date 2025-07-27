@@ -267,7 +267,7 @@ const Dashboard = () => {
                       </div>
                       
                       <div className="flex gap-2">
-                        <Button variant="outline" size="sm" className="flex-1">
+                        <Button variant="outline" size="sm" className="flex-1" onClick={() => navigate(`/car/${car.id}`)}>
                           <Eye className="h-4 w-4 mr-1" />
                           View
                         </Button>
@@ -383,7 +383,7 @@ const Dashboard = () => {
                         {car.city}, {car.state}
                       </div>
                       
-                      <Button variant="automotive" className="w-full">
+                      <Button variant="automotive" className="w-full" onClick={() => navigate(`/car/${car.id}`)}>
                         View Details
                       </Button>
                     </CardContent>

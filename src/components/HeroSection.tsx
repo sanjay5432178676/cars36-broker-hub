@@ -1,8 +1,17 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search, Car, Shield, Award } from "lucide-react";
 import heroImage from "@/assets/hero-cars.jpg";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = () => {
+    navigate(`/browse?search=${encodeURIComponent(searchTerm)}`);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -34,10 +43,13 @@ const HeroSection = () => {
                 <input
                   type="text"
                   placeholder="Search by brand, model, or location..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                 />
               </div>
-              <Button variant="automotive" size="lg" className="md:px-8">
+              <Button variant="automotive" size="lg" className="md:px-8" onClick={handleSearch}>
                 <Search className="h-5 w-5 mr-2" />
                 Search Cars
               </Button>
@@ -46,11 +58,11 @@ const HeroSection = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button variant="hero" size="xl">
+            <Button variant="hero" size="xl" onClick={() => navigate("/browse")}>
               <Car className="h-6 w-6 mr-2" />
               Browse Cars
             </Button>
-            <Button variant="accent" size="xl">
+            <Button variant="accent" size="xl" onClick={() => navigate("/sell")}>
               Sell Your Car
             </Button>
           </div>

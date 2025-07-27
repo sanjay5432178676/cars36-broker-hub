@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -56,6 +57,8 @@ const featuredCars = [
 ];
 
 const FeaturedCars = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-16 bg-gradient-card">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,7 +129,7 @@ const FeaturedCars = () => {
                   </div>
                 </div>
 
-                <Button variant="automotive" className="w-full">
+                <Button variant="automotive" className="w-full" onClick={() => navigate(`/car/${car.id}`)}>
                   View Details
                 </Button>
               </CardContent>
@@ -135,7 +138,7 @@ const FeaturedCars = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="outline" size="lg" className="px-8">
+          <Button variant="outline" size="lg" className="px-8" onClick={() => navigate("/browse")}>
             View All Cars
           </Button>
         </div>
